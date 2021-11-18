@@ -1,0 +1,12 @@
+viikko3/hello-robot/src/__pycache__/
+viikko3/login-robot/src/__pycache__/
+viikko3/login-robot/src/entities/__pycache__/
+viikko3/login-robot/src/repositories/__pycache__/
+viikko3/login-robot/src/services/__pycache__/
+viikko3/nhl-reader/src/__pycache__/
+viikko3/web-login-robot/selenium*
+viikko3/web-login-robot/src/__pycache__/
+viikko3/web-login-robot/src/services/__pycache__/
+viikko3/web-login-robot/src/repositories/__pycache__/
+viikko3/web-login-robot/src/entities/__pycache__/
+viikko3/web-login-robot/src/services/__pycache__/
