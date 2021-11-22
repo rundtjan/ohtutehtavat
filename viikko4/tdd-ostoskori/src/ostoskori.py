@@ -24,15 +24,16 @@ class Ostoskori:
 
     def lisaa_tuote(self, lisattava: Tuote):
         # lisää tuotteen
-        ostos = self._loyda_tuote_ostoksista(lisattava)
-        if not ostos == None:
-            self._ostokset[ostos].muuta_lukumaaraa(1)
+        index = self._loyda_tuote_ostoksista(lisattava)
+        if not index == None:
+            self._ostokset[index].muuta_lukumaaraa(1)
         else:
             self._ostokset.append(Ostos(lisattava))
 
     def poista_tuote(self, poistettava: Tuote):
-        # poistaa tuotteen
-        pass
+        index = self._loyda_tuote_ostoksista(poistettava)
+        if not index == None:
+            self._ostokset[index].muuta_lukumaaraa(-1)
 
     def tyhjenna(self):
         pass

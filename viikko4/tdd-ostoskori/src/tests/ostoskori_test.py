@@ -37,14 +37,12 @@ class TestOstoskori(unittest.TestCase):
     def test_kahden_saman_tuotteen_lisaamisen_jalkeen_korissa_kaksi_tavara(self):
         kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
-        kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
         self.assertEqual(self.kori.tavaroita_korissa(), 2)
 
     def test_kahden_saman_tuotteen_lisaamisen_jalkeen_ostoskorin_hinta_on_oikein(self):
         kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
-        kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
         self.assertEqual(6, self.kori.hinta())
 
@@ -69,15 +67,22 @@ class TestOstoskori(unittest.TestCase):
     def test_saman_tuotteen_lisaamisen_jalkeen_korissa_yksi_ostos(self):
         kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
-        kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
         self.assertEqual(len(self.kori.ostokset()), 1)
 
     def test_kahden_saman_tuotteen_lisaamisen_jalkeen_korissa_yksi_oikea_ostos_ja_kaksi_kpl(self):
         kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
-        kauramaito = Tuote("Kauramaito", 3)
         self.kori.lisaa_tuote(kauramaito)
         ostos = self.kori.ostokset()[0]
         self.assertEqual(ostos.tuotteen_nimi(), "Kauramaito")
         self.assertEqual(ostos.lukumaara(), 2)
+
+    def test_jos_korissa_kaksi_samaa_tuotetta_ja_toinen_poistetaan_koriin_jaa_ostos_jossa_yksi_tuote(self):
+        kauramaito = Tuote("Kauramaito", 3)
+        self.kori.lisaa_tuote(kauramaito)
+        self.kori.lisaa_tuote(kauramaito)
+        self.kori.poista_tuote(kauramaito)
+        ostokset = self.kori.ostokset()
+        self.assertEqual(len(ostokset), 1)
+        self.assertEqual(ostokset[0].lukumaara(), 1)
