@@ -34,6 +34,8 @@ class Ostoskori:
         index = self._loyda_tuote_ostoksista(poistettava)
         if not index == None:
             self._ostokset[index].muuta_lukumaaraa(-1)
+            if self._ostokset[index].lukumaara() == 0:
+                del self._ostokset[index]
 
     def tyhjenna(self):
         pass
